@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Class name="~org\.jooq.*"/>
+    </Match>
+    <Match>
+        <Class name="~com.*"/>
+        <Bug code="EI,EI2,NP,MS"/>
+    </Match>
+    <Match>
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+        <Annotation name="javax.annotation.processing.Generated"/>
+    </Match>
+    <Match>
+        <Source name="~.*\.kt"/>
+    </Match>
+</FindBugsFilter>
