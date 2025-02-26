@@ -11,7 +11,7 @@
 
     <groupId>world.evgereo.maven</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <description>Parent POM for java spring boot v3 projects</description>
@@ -30,14 +30,15 @@
         <swagger-api.version>2.2.20</swagger-api.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
         <spring-security.version>6.1.8</spring-security.version>
+        <springdoc-openapi-webmvc-ui.version>2.2.0</springdoc-openapi-webmvc-ui.version>
 
         <!--Data-->
         <postgresql.version>42.6.2</postgresql.version>
 
         <!--Test-->
-        <embedded-postgres.version>2.0.4</embedded-postgres.version>
+        <embedded-postgres.version>2.0.7</embedded-postgres.version>
         <embedded-postgres-binaries.version>14.0.0</embedded-postgres-binaries.version>
-        <embedded-database-spring-test.version>2.2.0</embedded-database-spring-test.version>
+        <embedded-database-spring-test.version>2.5.1</embedded-database-spring-test.version>
 
         <!--Other-->
         <spotbugs.version>4.8.2</spotbugs.version>
@@ -45,8 +46,8 @@
         <lombok-mapstruct.version>0.2.0</lombok-mapstruct.version>
 
         <!--Code Validation-->
-        <spotbugs-settings.version>0.0.1-SNAPSHOT</spotbugs-settings.version>
-        <check-style-settings.version>0.0.1-SNAPSHOT</check-style-settings.version>
+        <spotbugs-settings.version>1.0.0-SNAPSHOT</spotbugs-settings.version>
+        <check-style-settings.version>1.0.0-SNAPSHOT</check-style-settings.version>
 
         <!--Plugin-->
         <maven-release.version>3.0.1</maven-release.version>
@@ -72,6 +73,12 @@
                 <version>${spring-security.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi-webmvc-ui.version}</version>
             </dependency>
 
             <dependency>
@@ -214,66 +221,92 @@
                         </goals>
                         <configuration>
                             <resourceBundles>
-                                <resourceBundle>world.evgereo.maven:check-style:${check-style-settings.version}</resourceBundle>
-                                <resourceBundle>world.evgereo.maven:spotbugs:${spotbugs-settings.version}</resourceBundle>
+                                <resourceBundle>
+                                    world.evgereo.maven:check-style:${check-style-settings.version}
+                                </resourceBundle>
+                                <resourceBundle>
+                                    world.evgereo.maven:spotbugs:${spotbugs-settings.version}
+                                </resourceBundle>
                             </resourceBundles>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle.version}</version>
-                <configuration>
-                    <propertyExpansion>
-                        checkstyle.dir=${project.build.directory}/maven-shared-archive-resources/check-style
-                    </propertyExpansion>
-                    <configLocation>
-                        ${project.build.directory}/maven-shared-archive-resources/check-style/checkstyle.xml
-                    </configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>check</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>${maven-spotbugs.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.github.spotbugs</groupId>
-                        <artifactId>spotbugs</artifactId>
-                        <version>${spotbugs.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <excludeFilterFile>
-                        ${project.build.directory}/maven-shared-archive-resources/spotbugs/spotbugs-exclude.xml
-                    </excludeFilterFile>
-                    <classFilesDirectory>${project.build.outputDirectory}</classFilesDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>spotbugs</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>check-style</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>${maven-checkstyle.version}</version>
+                        <configuration>
+                            <propertyExpansion>
+                                checkstyle.dir=${project.build.directory}/maven-shared-archive-resources/check-style
+                            </propertyExpansion>
+                            <configLocation>
+                                ${project.build.directory}/maven-shared-archive-resources/check-style/checkstyle.xml
+                            </configLocation>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>check</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>spotbugs</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
+                        <version>${maven-spotbugs.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.github.spotbugs</groupId>
+                                <artifactId>spotbugs</artifactId>
+                                <version>${spotbugs.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <excludeFilterFile>
+                                ${project.build.directory}/maven-shared-archive-resources/spotbugs/spotbugs-exclude.xml
+                            </excludeFilterFile>
+                            <classFilesDirectory>${project.build.outputDirectory}</classFilesDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>spotbugs</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
