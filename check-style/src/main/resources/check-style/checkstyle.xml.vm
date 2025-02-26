@@ -16,27 +16,28 @@
     <property name="severity" value="error"/>
     <property name="fileExtensions" value="java, properties, xml, kt"/>
 
-    <!-- Excludes all 'module-info.java' files              -->
-    <!-- See https://checkstyle.sourceforge.io/filefilters/beforeexecutionexclusionfilefilter.html -->
-    <module name="BeforeExecutionExclusionFileFilter">
-        <property name="fileNamePattern" value="module\-info\.java$"/>
-    </module>
-
+    <!--Add optional suppression filter for checks-->
     <!-- https://checkstyle.sourceforge.io/filters/suppressionfilter.html -->
     <module name="SuppressionFilter">
         <property name="file" value="${checkstyle.dir}/checkstyle-suppressions.xml"/>
         <property name="optional" value="true"/>
     </module>
 
-    <!-- Checks whether files end with a new line.                        -->
+    <!--Excludes all 'module-info.java' files-->
+    <!-- See https://checkstyle.sourceforge.io/filefilters/beforeexecutionexclusionfilefilter.html -->
+    <module name="BeforeExecutionExclusionFileFilter">
+        <property name="fileNamePattern" value="module\-info\.java$"/>
+    </module>
+
+    <!--Checks whether files end with a new line-->
     <!-- See https://checkstyle.sourceforge.io/checks/misc/newlineatendoffile.html -->
     <module name="NewlineAtEndOfFile"/>
 
-    <!-- Checks that property files contain the same keys.         -->
+    <!--Checks that property files contain the same keys-->
     <!-- See https://checkstyle.org/checks/misc/translation.html -->
     <module name="Translation"/>
 
-    <!-- Checks for Size Violations.                    -->
+    <!--Checks for Size Violations-->
     <!-- See https://checkstyle.sourceforge.io/checks/sizes/index.html -->
     <module name="FileLength">
         <property name="max" value="1500"/>
@@ -46,13 +47,13 @@
         <property name="max" value="140"/>
     </module>
 
-    <!-- Checks for whitespace                               -->
+    <!--Checks for whitespace-->
     <!-- See https://checkstyle.org/checks/whitespace/index.html -->
     <module name="FileTabCharacter">
         <property name="fileExtensions" value="java, kt"/>
     </module>
 
-    <!-- Miscellaneous other checks.                   -->
+    <!--Miscellaneous other checks-->
     <!-- See https://checkstyle.org/checks/misc/index.html -->
     <module name="RegexpSingleline">
         <property name="format" value="\s+$"/>
@@ -63,7 +64,7 @@
 
     <module name="TreeWalker">
 
-        <!-- Checks for Javadoc comments.                     -->
+        <!--Checks for Javadoc comments-->
         <!-- See https://checkstyle.org/checks/javadoc/index.html -->
         <module name="AtclauseOrder"/>
         <module name="InvalidJavadocPosition"/>
@@ -72,8 +73,7 @@
         <module name="JavadocMissingLeadingAsterisk"/>
         <module name="JavadocMissingWhitespaceAfterAsterisk"/>
 
-        <!-- Сюда можно еще добавить!!! -->
-        <!-- Checks for Naming Conventions -->
+        <!--Checks for Naming Conventions-->
         <!-- See https://checkstyle.org/checks/naming/index.html -->
         <module name="AbstractClassName"/>
         <module name="CatchParameterName"/>
@@ -91,14 +91,14 @@
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
 
-        <!-- Checks for imports                              -->
+        <!--Checks for imports-->
         <!-- See https://checkstyle.sourceforge.io/checks/imports/index.html -->
         <module name="AvoidStarImport"/>
         <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
 
-        <!-- Checks for Size Violations.                    -->
+        <!--Checks for Size Violations-->
         <!-- See https://checkstyle.sourceforge.io/checks/sizes/index.html -->
         <module name="MethodLength"/>
         <module name="LambdaBodyLength">
@@ -113,7 +113,7 @@
             <property name="max" value="12"/>
         </module>
 
-        <!-- Checks for whitespace                               -->
+        <!--Checks for whitespace-->
         <!-- See https://checkstyle.sourceforge.io/checks/whitespace/index.html -->
         <module name="EmptyForIteratorPad"/>
         <module name="GenericWhitespace"/>
@@ -137,13 +137,12 @@
         <module name="NoLineWrap"/>
         <module name="NoWhitespaceBeforeCaseDefaultColon"/>
 
-        <!-- Modifier Checks                                    -->
+        <!--Modifier Checks-->
         <!-- See https://checkstyle.sourceforge.io/checks/modifier/index.html -->
         <module name="ModifierOrder"/>
         <module name="RedundantModifier"/>
 
-
-        <!--            Checks for annotations               TODO-->
+        <!--Checks for annotations-->
         <!-- See https://checkstyle.sourceforge.io/checks/annotation/index.html -->
         <module name="AnnotationLocation">
             <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
@@ -151,8 +150,7 @@
         <module name="AnnotationUseStyle"/>
         <module name="MissingOverride"/>
 
-
-        <!-- Checks for blocks. You know, those {}'s         -->
+        <!--Checks for blocks-->
         <!-- See https://checkstyle.sourceforge.io/checks/blocks/index.html -->
         <module name="AvoidNestedBlocks"/>
         <module name="EmptyBlock"/>
@@ -160,7 +158,7 @@
         <module name="NeedBraces"/>
         <module name="RightCurly"/>
 
-        <!-- Checks for common coding problems               -->
+        <!--Checks for common coding problems-->
         <!-- See https://checkstyle.sourceforge.io/checks/coding/index.html -->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
@@ -171,7 +169,7 @@
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
 
-        <!-- Checks for class design                         -->
+        <!--Checks for class design-->
         <!-- See https://checkstyle.org/checks/design/index.html -->
         <module name="FinalClass"/>
         <module name="InterfaceIsType"/>
@@ -180,12 +178,12 @@
             <property name="packageAllowed" value="true"/>
         </module>
 
-        <!-- Miscellaneous other checks.                   -->
+        <!--Miscellaneous other checks-->
         <!-- See https://checkstyle.org/checks/misc/index.html -->
         <module name="ArrayTypeStyle"/>
         <module name="UpperEll"/>
 
-        <!-- Enable suppression config -->
+        <!--Enable suppression config-->
         <!-- See https://checkstyle.sourceforge.io/filters/suppressionxpathfilter.html  -->
         <module name="SuppressionXpathFilter">
             <property name="file" value="${checkstyle.dir}/checkstyle-xpath-suppressions.xml"/>

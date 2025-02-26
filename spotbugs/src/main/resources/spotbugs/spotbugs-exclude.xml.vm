@@ -8,7 +8,7 @@
         <Bug code="EI,EI2,NP,MS"/>
     </Match>
     <Match>
-        <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE, EQ_DOESNT_OVERRIDE_EQUALS" />
         <Annotation name="javax.annotation.processing.Generated"/>
     </Match>
     <Match>
