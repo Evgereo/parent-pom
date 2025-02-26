@@ -5,7 +5,7 @@
 
     <groupId>world.evgereo.maven</groupId>
     <artifactId>spotbugs</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>${project.artifactId}-${project.version}</name>
     <description>Dependencies for spotbugs for java projects</description>
 
@@ -21,7 +21,6 @@
         <!--Plugin-->
         <maven-remote-resources.version>3.1.0</maven-remote-resources.version>
     </properties>
-
 
     <build>
         <directory>${project.basedir}/target</directory>
