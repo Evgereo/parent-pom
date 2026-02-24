@@ -40,9 +40,10 @@
         <embedded-postgres-binaries.version>14.0.0</embedded-postgres-binaries.version>
         <embedded-database-spring-test.version>2.5.1</embedded-database-spring-test.version>
 
-        <!--Other-->
+        <!--Libs-->
         <spotbugs.version>4.8.2</spotbugs.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <apache-commons-io.version>2.16.1</apache-commons-io.version>
         <lombok-mapstruct.version>0.2.0</lombok-mapstruct.version>
 
         <!--Code Validation-->
@@ -133,11 +134,17 @@
                 <version>${embedded-postgres.version}</version>
             </dependency>
 
-            <!--Other-->
+            <!--Libs-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${apache-commons-io.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -196,6 +203,9 @@
                                 <version>${lombok-mapstruct.version}</version>
                             </dependency>
                         </annotationProcessorPaths>
+                        <compilerArgs>
+                            <arg>-Amapstruct.unmappedTargetPolicy=ERROR</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
 

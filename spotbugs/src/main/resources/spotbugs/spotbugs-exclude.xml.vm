@@ -8,8 +8,16 @@
         <Bug code="EI,EI2,NP,MS"/>
     </Match>
     <Match>
-        <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE, EQ_DOESNT_OVERRIDE_EQUALS" />
+        <Class name="~world.*"/>
+        <Bug code="EI,EI2,NP,MS"/>
+    </Match>
+    <Match>
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE,EQ_DOESNT_OVERRIDE_EQUALS" />
         <Annotation name="javax.annotation.processing.Generated"/>
+    </Match>
+    <Match>
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+        <Package name="~.*\.mapper.*"/>
     </Match>
     <Match>
         <Source name="~.*\.kt"/>
