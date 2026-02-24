@@ -63,6 +63,7 @@
     </module>
 
     <module name="TreeWalker">
+        <module name="SuppressWarningsHolder"/>
 
         <!--Checks for Javadoc comments-->
         <!-- See https://checkstyle.org/checks/javadoc/index.html -->
@@ -190,4 +191,6 @@
             <property name="optional" value="false"/>
         </module>
     </module>
+
+    <module name="SuppressWarningsFilter"/>
 </module>
