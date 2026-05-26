@@ -336,11 +336,17 @@
         <repository>
             <id>nexus-releases</id>
             <url>https://nexus.finance-analytics.online/repository/maven-releases/</url>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
         </repository>
 
         <repository>
             <id>nexus-snapshots</id>
             <url>https://nexus.finance-analytics.online/repository/maven-snapshots/</url>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
         </repository>
     </repositories>
 </project>
