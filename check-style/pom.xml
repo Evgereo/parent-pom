@@ -20,6 +20,7 @@
 
         <!--Plugin-->
         <maven-remote-resources.version>3.1.0</maven-remote-resources.version>
+        <maven-deploy.version>3.1.0</maven-deploy.version>
     </properties>
 
     <build>
@@ -53,6 +54,24 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy.version}</version>
+            </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>https://nexus.finance-analytics.online/repository/maven-snapshots/</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>nexus-releases</id>
+            <url>https://nexus.finance-analytics.online/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 </project>

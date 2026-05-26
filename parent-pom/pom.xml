@@ -319,4 +319,16 @@
             </build>
         </profile>
     </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>https://nexus.finance-analytics.online/repository/maven-snapshots/</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>nexus-releases</id>
+            <url>https://nexus.finance-analytics.online/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
